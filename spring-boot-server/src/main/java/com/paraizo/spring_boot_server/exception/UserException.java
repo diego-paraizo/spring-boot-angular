@@ -9,7 +9,7 @@ public class UserException extends RuntimeException {
         this.user = user;
     }
 
-    public User getCustomer() {
+    public User getUser() {
         return user;
     }
 

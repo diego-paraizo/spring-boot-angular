@@ -16,10 +16,6 @@ public class OpenApiConfig {
                         .title("API de Gestão de Usuários - Paraizo")
                         .version("1.0")
                         .description("Sistema para cadastro de usuários com vínculo de origem (Magistrados, Funcionários, etc.)")
-
-                        /*.contact(new User()
-                                .setNomeUsuario("Diego Paraizo")
-                                .email("seu-email@exemplo.com"))*/
-                                );
+                        );
     }
 }

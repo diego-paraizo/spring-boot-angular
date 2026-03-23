@@ -18,7 +18,6 @@ public record UserUpdateDTO(
         String matriculaUsuario,
 
         @Schema(example = "1990-05-04")
-        @Size(max = 10)
         LocalDate dataNascimento,
 
         @Schema(example = "novo_email@email.com")

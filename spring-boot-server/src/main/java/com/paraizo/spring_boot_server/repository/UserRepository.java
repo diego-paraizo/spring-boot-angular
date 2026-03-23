@@ -14,8 +14,6 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findById(Long id);
-
     @Modifying(clearAutomatically = true)
     @Transactional
     @Query("UPDATE User u SET u.nomeUsuario = :#{#user.nomeUsuario}, " +
@@ -25,8 +23,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "u.type = :#{#user.type} " +
             " WHERE u.id = :id")
     void updateById(@Param("id") Long id, @Param("user") User user);
-
-    void deleteById(Long id);
 
     @Query(value = "SELECT * FROM BUSCAR_USUARIOS(:origem)", nativeQuery = true)
     List<User> buscarOrigemPorProcedure(String origem);

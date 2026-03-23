@@ -53,7 +53,6 @@ public class User {
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.type = type;
-        //this.origem = origem;
     }
 
     public User() {

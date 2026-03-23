@@ -37,7 +37,7 @@ public class UserController {
     @ApiResponse(responseCode = "201", description = "Usuário criado com sucesso")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody @Valid UserRequestDTO dto) {
+    public UserResponseDTO createUser(@RequestBody @Valid UserRequestDTO dto) {
         return userService.createUserFromDto(dto);
     }
 
