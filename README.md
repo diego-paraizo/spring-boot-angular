@@ -8,7 +8,7 @@ Este projeto é uma aplicação full-stack para gerenciamento de usuários, perm
 
 ### **Backend**
 * **Java 17**
-* **Spring Boot 3.2.4**
+* **Spring Boot 4.0.4**
 * **Spring Data JPA**: Persistência de dados.
 * **H2 Database**: Banco de dados em memória para desenvolvimento.
 * **Spring Security**: Configuração de segurança e CORS.
