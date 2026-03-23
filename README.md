@@ -8,7 +8,7 @@ Este projeto é uma aplicação full-stack para gerenciamento de usuários, perm
 
 ### **Backend**
 * **Java 17**
-* **Spring Boot 3.2.4**
+* **Spring Boot 4.0.4**
 * **Spring Data JPA**: Persistência de dados.
 * **H2 Database**: Banco de dados em memória para desenvolvimento.
 * **Spring Security**: Configuração de segurança e CORS.
@@ -72,22 +72,28 @@ Este projeto é uma aplicação full-stack para gerenciamento de usuários, perm
 ## 🧪 Notas de Implementação
 
 ### **Stored Procedure no H2**
-A aplicação define automaticamente a seguinte procedure no arranque (via `import.sql`):
+A aplicação define automaticamente as seguintes procedures no arranque (via `import.sql`):
 ```sql
-CREATE ALIAS IF NOT EXISTS BUSCAR_TODOS_USUARIOS AS $$
+DROP ALIAS IF EXISTS LISTAR_USUARIOS;
+CREATE ALIAS LISTAR_USUARIOS AS '
 import java.sql.*;
-ResultSet buscar(Connection conn) throws SQLException {
-    return conn.createStatement().executeQuery("SELECT * FROM USERS");
-}
-$$;
+@CODE
+ResultSet buscarUsuariosPorProcedure(Connection conn) throws SQLException {
+    return conn.createStatement().executeQuery("SELECT * FROM USUARIO");
+}';
 ```
 ```sql
-CREATE ALIAS IF NOT EXISTS BUSCAR_TODOS_USUARIOS AS $$
+DROP ALIAS IF EXISTS BUSCAR_USUARIOS;
+CREATE ALIAS BUSCAR_USUARIOS AS '
 import java.sql.*;
-ResultSet buscar(Connection conn) throws SQLException {
-    return conn.createStatement().executeQuery("SELECT * FROM USERS");
-}
-$$;
+@CODE
+ResultSet buscarOrigemPorProcedure(Connection conn, String origemFiltro) throws SQLException {
+    String sql = "SELECT * FROM USUARIO";
+    if (origemFiltro != null && !origemFiltro.isEmpty()) {
+        sql += " WHERE ORIGEM = ''" + origemFiltro + "''";
+    }
+    return conn.createStatement().executeQuery(sql);
+}';
 ```
 
 ### **Tratamento de Datas**
